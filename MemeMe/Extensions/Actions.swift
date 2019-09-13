@@ -18,9 +18,9 @@ extension MemeMeViewController{
     
     
     /*Display image picker upon action on the bar buttons.
-    When the action is recieved, the sender would be identied by its tag.
+     When the action is recieved, the sender would be identied by its tag.
      If the tag belong to the Album, the albu would display, otherwise, the camer would launch
-    */
+     */
     @objc func displayImagePicker(_ sender:UIBarButtonItem){
         
         let imagePicker = UIImagePickerController()
@@ -46,7 +46,7 @@ extension MemeMeViewController{
         self.topTextField.text = "top".uppercased()
         self.imageDisplayer.image = nil
         self.shareButton.isEnabled = false
-       
+        
     }
     
     
@@ -58,6 +58,10 @@ extension MemeMeViewController{
         let meme = saveMeme()
         let image = meme.memedImage
         let activaity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        activaity.excludedActivityTypes = [.postToTwitter,
+                                           .postToFlickr,
+                                           .postToFacebook,
+                                           .postToWeibo,]
         activaity.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
             if completed{
                 self.cancelMeme()
@@ -74,7 +78,7 @@ extension MemeMeViewController{
         let originalImage = imageDisplayer.image!
         let memeImage = generateMemedImage()
         let meme = Meme(topText: topText, bottomText: bottomText, originalImage: originalImage, memedImage: memeImage)
-      
+        
         
         return meme
         
