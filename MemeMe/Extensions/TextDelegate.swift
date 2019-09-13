@@ -13,11 +13,22 @@ import UIKit
 extension MemeMeViewController: UITextFieldDelegate{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+        if textField.text == "top".uppercased() || textField.text == "bottom".uppercased(){
+            textField.text = ""
+        }
+        
     }
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text == ""{
+            if textField.tag == 500{
+                textField.text = "top".uppercased()
+            }else{
+                textField.text = "bottom".uppercased()
+            }
+        }
+        textField.resignFirstResponder()
         return true
     }
     

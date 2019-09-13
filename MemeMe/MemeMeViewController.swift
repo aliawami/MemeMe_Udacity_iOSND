@@ -6,20 +6,34 @@
 //  Copyright © 2019 Ali Alawami. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class MemeMeViewController: UIViewController {
     
     
+    
+    //MARK: Properties
+    
+    let memeTextAttributes: [NSAttributedString.Key: Any] = [
+        NSAttributedString.Key.strokeColor: UIColor.black,
+        NSAttributedString.Key.foregroundColor: UIColor.white,
+        NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSAttributedString.Key.strokeWidth:  -1
+    ]
+    
+
+    
     //MARK: Lables
     lazy var topTextField: UITextField = {
         let text = UITextField()
+        text.text = "Top".uppercased()
+        text.tag = 500
         text.textAlignment = .center
-        text.text = "ToP".uppercased()
-        text.defaultTextAttributes = [:]
-        text.textColor = .white
-        text.delegate = self
+        text.defaultTextAttributes = self.memeTextAttributes
+        text.autocapitalizationType = UITextAutocapitalizationType.allCharacters
         
+        text.delegate = self
         
         text.translatesAutoresizingMaskIntoConstraints = false
         
@@ -28,11 +42,13 @@ class MemeMeViewController: UIViewController {
     
     lazy var bottomTextField: UITextField = {
         let text = UITextField()
-        text.textAlignment = .center
         text.text = "Bottom".uppercased()
-        text.textColor = .white
-        text.delegate = self
+        text.tag = 501
+        text.textAlignment = .center
+        text.defaultTextAttributes = self.memeTextAttributes
+        text.autocapitalizationType = UITextAutocapitalizationType.allCharacters
         
+        text.delegate = self
         
         text.translatesAutoresizingMaskIntoConstraints = false
         
@@ -78,6 +94,7 @@ class MemeMeViewController: UIViewController {
     lazy var shareButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(shareMeme))
         barButton.tag = 201
+        barButton.isEnabled = false
         return barButton
     }()
     
@@ -86,6 +103,7 @@ class MemeMeViewController: UIViewController {
         let displayImage = UIImageView()
         displayImage.contentMode = UIView.ContentMode.scaleAspectFit
         displayImage.backgroundColor = .black
+        
         displayImage.translatesAutoresizingMaskIntoConstraints = false
         return displayImage
     }()
@@ -107,7 +125,14 @@ class MemeMeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.keyboardNotification()
+        
     
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.keyboardNoificationDismiss()
     }
     
     
@@ -139,8 +164,8 @@ class MemeMeViewController: UIViewController {
         let margins = self.view.layoutMarginsGuide
         self.imageDisplayer.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         self.imageDisplayer.bottomAnchor.constraint(equalTo: self.toolbar.topAnchor).isActive = true
-        self.imageDisplayer.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-        self.imageDisplayer.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
+        self.imageDisplayer.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.imageDisplayer.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         
         
     }
@@ -159,38 +184,12 @@ class MemeMeViewController: UIViewController {
         
     }
     
-    
-    
-    
-    
-   
 
-    
-    
+
 
 
 }
 
 
-
-extension MemeMeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        DispatchQueue.global().async {
-            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-                DispatchQueue.main.async {
-                    self.imageDisplayer.image = image
-                    self.dismiss(animated: true, completion: nil)
-                }
-                
-            }
-        }
-        
-    }
-}
 
 

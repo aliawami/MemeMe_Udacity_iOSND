@@ -36,19 +36,68 @@ extension MemeMeViewController{
     
     
     
+    
+    
+    
+    //Return all the views to their orgiginal state
+    @objc func cancelMeme(){
+        //reset Everythink to original
+        self.bottomTextField.text = "bottom".uppercased()
+        self.topTextField.text = "top".uppercased()
+        self.imageDisplayer.image = nil
+        self.shareButton.isEnabled = false
+       
+    }
+    
+    
+    
+    
+    
+    
     @objc func shareMeme(){
-        let image = UIImage()
+        let meme = saveMeme()
+        let image = meme.memedImage
         let activaity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        activaity.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            if completed{
+                self.cancelMeme()
+            }
+            
+        }
         present(activaity, animated: true, completion: nil)
     }
     
     
-    
-    @objc func cancelMeme(){
-        //reset Everythink to original
-        //self.bottomTextField.
-        //self.topTextField.text?.isEmpty = true
-        //self.imageDisplayer = nil
+    func saveMeme()->Meme{
+        let topText = topTextField.text ?? ""
+        let bottomText = bottomTextField.text ?? ""
+        let originalImage = imageDisplayer.image!
+        let memeImage = generateMemedImage()
+        let meme = Meme(topText: topText, bottomText: bottomText, originalImage: originalImage, memedImage: memeImage)
+      
+        
+        return meme
+        
     }
+    
+    
+    func generateMemedImage() -> UIImage {
+        
+        self.toolbar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        self.toolbar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = false
+        
+        
+        return memedImage
+    }
+    
     
 }

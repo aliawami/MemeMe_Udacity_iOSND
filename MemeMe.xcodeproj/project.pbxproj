@@ -15,6 +15,9 @@
 		59DB48E8232BCAFD0050365D /* TextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB48E7232BCAFD0050365D /* TextDelegate.swift */; };
 		59DB48EA232BCCAA0050365D /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB48E9232BCCAA0050365D /* Navigation.swift */; };
 		59DB48EC232BCE660050365D /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB48EB232BCE660050365D /* Actions.swift */; };
+		59F33F94232C1F5A00DE34A6 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33F93232C1F5A00DE34A6 /* Meme.swift */; };
+		59F33F96232C2D3800DE34A6 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33F95232C2D3800DE34A6 /* Keyboard.swift */; };
+		59F33F98232C2E7D00DE34A6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33F97232C2E7D00DE34A6 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		59DB48E7232BCAFD0050365D /* TextDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDelegate.swift; sourceTree = "<group>"; };
 		59DB48E9232BCCAA0050365D /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		59DB48EB232BCE660050365D /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		59F33F93232C1F5A00DE34A6 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		59F33F95232C2D3800DE34A6 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		59F33F97232C2E7D00DE34A6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,7 @@
 		59DB48D3232BAB660050365D /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
+				59F33F92232C1F4600DE34A6 /* Model */,
 				59DB48D4232BAB660050365D /* AppDelegate.swift */,
 				59DB48D6232BAB660050365D /* MemeMeViewController.swift */,
 				59DB48E6232BAB860050365D /* Extensions */,
@@ -77,8 +84,18 @@
 				59DB48E7232BCAFD0050365D /* TextDelegate.swift */,
 				59DB48E9232BCCAA0050365D /* Navigation.swift */,
 				59DB48EB232BCE660050365D /* Actions.swift */,
+				59F33F95232C2D3800DE34A6 /* Keyboard.swift */,
+				59F33F97232C2E7D00DE34A6 /* ImagePicker.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		59F33F92232C1F4600DE34A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				59F33F93232C1F5A00DE34A6 /* Meme.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +171,10 @@
 			files = (
 				59DB48EC232BCE660050365D /* Actions.swift in Sources */,
 				59DB48E8232BCAFD0050365D /* TextDelegate.swift in Sources */,
+				59F33F96232C2D3800DE34A6 /* Keyboard.swift in Sources */,
 				59DB48D7232BAB660050365D /* MemeMeViewController.swift in Sources */,
+				59F33F94232C1F5A00DE34A6 /* Meme.swift in Sources */,
+				59F33F98232C2E7D00DE34A6 /* ImagePicker.swift in Sources */,
 				59DB48D5232BAB660050365D /* AppDelegate.swift in Sources */,
 				59DB48EA232BCCAA0050365D /* Navigation.swift in Sources */,
 			);
