@@ -15,7 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        
+        let vc = MemeMeViewController()
+        let navigation = UINavigationController(rootViewController: vc)
+        navigation.interactivePopGestureRecognizer?.isEnabled = false
+        
+        
+        self.window = UIWindow()
+        self.window?.makeKeyAndVisible()
+        
+        self.window?.rootViewController = navigation
+        
+        
         return true
     }
 
